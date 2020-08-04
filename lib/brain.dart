@@ -26,18 +26,29 @@ class Brain extends ChangeNotifier {
     } else if (randomEvent < 5) {
       fixScreen();
     }
-    startDance(randomEvent, 30);
+    checkDance(randomEvent, 30);
     notifyListeners();
   }
 
-  void startDance(int random, int chance) {
+  void checkDance(int random, int chance) {
+    if (random < chance) {
+      startDance();
+    }
     if (danceCounter >= danceManAnimation.length - 1) {
       stopDance();
     }
-    if (random < chance || danceCounter >= 0) {
-      danceCounter++;
-      danceMan = danceManAnimation[danceCounter];
+    if (danceCounter >= 0) {
+      dance();
     }
+  }
+
+  void startDance() {
+    danceCounter = 0;
+  }
+
+  void dance() {
+    danceCounter++;
+    danceMan = danceManAnimation[danceCounter];
   }
 
   void stopDance() {
@@ -61,11 +72,10 @@ class Brain extends ChangeNotifier {
   }
 
   void checkTextColor() {
-    if ((bgColor.red < 124 &&
-            bgColor.green < 124 &&
-            bgColor.blue < 124 &&
-            bgColor.opacity > 0.5) ||
-        (bgColor.blue > 150)) {
+    if (bgColor.red < 124 &&
+        bgColor.green < 124 &&
+        bgColor.blue < 124 &&
+        bgColor.opacity > 0.5) {
       textColor = Colors.white;
     } else {
       textColor = Colors.black;
