@@ -31,7 +31,7 @@ class Brain extends ChangeNotifier {
   }
 
   bool isDanced() {
-    if (danceCounter >= 0 && danceCounter < danceManAnimation.length - 1) {
+    if (danceCounter >= 0 && danceCounter < danceManAnimation.length) {
       return true;
     } else {
       return false;
@@ -45,7 +45,7 @@ class Brain extends ChangeNotifier {
     if (danceCounter >= danceManAnimation.length - 1) {
       stopDance();
     }
-    if (danceCounter >= 0) {
+    if (isDanced()) {
       dance();
     }
   }
