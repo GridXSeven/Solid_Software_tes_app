@@ -1,5 +1,4 @@
 # testapp
 
-A new Flutter application.
+A new Flutter Tap-Tap application.
 
-## Tap Tap
