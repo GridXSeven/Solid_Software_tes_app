@@ -30,8 +30,16 @@ class Brain extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool isDanced() {
+    if (danceCounter >= 0 && danceCounter < danceManAnimation.length - 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   void checkDance(int random, int chance) {
-    if (random < chance) {
+    if (random < chance && !isDanced()) {
       startDance();
     }
     if (danceCounter >= danceManAnimation.length - 1) {
